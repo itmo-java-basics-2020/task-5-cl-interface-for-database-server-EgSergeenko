@@ -22,17 +22,16 @@ public class DatabaseServer {
     }
 
     DatabaseCommandResult executeNextCommand(String commandText) {
-        String command = null;
         try {
             if (commandText == null) {
                 throw new IllegalArgumentException();
             }
-            command = commandText.split(" ")[0];
-            int end = commandText.split(" ").length;
-            String[] args = Arrays.copyOfRange(commandText.split(" "), 1, end);
+            String[] query = commandText.split(" ");
+            String command = query[0];
+            String[] args = Arrays.copyOfRange(query, 1, query.length);
             return DatabaseCommands.valueOf(command).getCommand(env, args).execute();
         } catch (IllegalArgumentException e) {
-            return SimpleDatabaseCommandResult.error(String.format("No such command: '%s'", command));
+            return SimpleDatabaseCommandResult.error("No such command");
 
         } catch (DatabaseException e) {
             return SimpleDatabaseCommandResult.error(e.getMessage());

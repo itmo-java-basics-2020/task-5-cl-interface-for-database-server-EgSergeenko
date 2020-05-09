@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public interface DatabaseCommandResult {
 
-    Optional<String> getResult();
+    String getResult();
 
     DatabaseCommandStatus getStatus();
 
@@ -17,12 +17,12 @@ public interface DatabaseCommandResult {
     }
 
     class SimpleDatabaseCommandResult implements DatabaseCommandResult {
-        private final Optional<String> result;
+        private final String result;
         private final DatabaseCommandStatus status;
         private String errorMessage;
 
         private SimpleDatabaseCommandResult(String result, DatabaseCommandStatus status) {
-            this.result = Optional.ofNullable(result);
+            this.result = result;
             this.status = status;
         }
 
@@ -40,7 +40,7 @@ public interface DatabaseCommandResult {
         }
 
         @Override
-        public Optional<String> getResult() {
+        public String getResult() {
             return result;
         }
 

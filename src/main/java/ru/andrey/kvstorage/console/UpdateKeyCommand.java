@@ -3,14 +3,14 @@ package ru.andrey.kvstorage.console;
 import ru.andrey.kvstorage.exception.DatabaseException;
 import ru.andrey.kvstorage.console.DatabaseCommandResult.SimpleDatabaseCommandResult;
 
-public class UpdateKey implements DatabaseCommand {
+public class UpdateKeyCommand implements DatabaseCommand {
     private final ExecutionEnvironment env;
     private final String databaseName;
     private final String tableName;
     private final String key;
     private final String value;
 
-    public UpdateKey(ExecutionEnvironment env, String databaseName, String tableName, String key, String value) {
+    public UpdateKeyCommand(ExecutionEnvironment env, String databaseName, String tableName, String key, String value) {
         this.env = env;
         this.databaseName = databaseName;
         this.tableName = tableName;
